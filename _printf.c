@@ -3,7 +3,7 @@
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int count = 0;
+	int count = 0, value;
 
 	va_start(list, format);
 
@@ -14,7 +14,7 @@ int _printf(const char *format, ...)
 	{
 		if (*format != '%')
 		{
-			putchar(*format);
+			write(1, format, 1);
 			count++;
 		}
 		else
@@ -25,7 +25,7 @@ int _printf(const char *format, ...)
 			if (*format == 'c')
 			{
 				char ch = va_arg(list, int);
-				putchar(ch);
+				write(1, &ch, 1);
 				count++;
 			}
 			else if (*format == 's')
@@ -33,16 +33,25 @@ int _printf(const char *format, ...)
 				char *str = va_arg(list, char*);
 				while (*str)
 				{
-					putchar(*str);
+					write(1, str, 1);;
 					str++;
 					count++;
 				}
 			}
 			else if (*format == '%')
 			{
-				putchar('%');
+				write(1, "%", 1);
 				count++;
 			}
+			else if (*format == 'd' ||*format == 'i')
+			{
+				value = va_arg(list, int);
+				while (value > 0) 
+				{
+					int num = value % 10;
+					write(1, &('0' + digit), 1);
+					value /= 10;
+				}
 		}
 		format++;
 	}
