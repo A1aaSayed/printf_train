@@ -3,7 +3,7 @@
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int count = 0, value;
+	int count = 0, value, num, digit;
 
 	va_start(list, format);
 
@@ -48,10 +48,12 @@ int _printf(const char *format, ...)
 				value = va_arg(list, int);
 				while (value > 0) 
 				{
-					int num = value % 10;
-					write(1, &('0' + digit), 1);
+					num = value % 10;
+					digit = '0' + num;
+					write(1, &digit, 1);
 					value /= 10;
 				}
+			}
 		}
 		format++;
 	}
