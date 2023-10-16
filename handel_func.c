@@ -14,7 +14,7 @@ int handel_func(char specifier, va_list list)
 	for (i = 0; specifi[i].specifi; i++)
 	{
 		if (specifier == specifi[i].specifi[0])
-			len = specifi[i].func(args);
+			len = specifi[i].func(list);
 	}
 	if (len == 0)
 	{

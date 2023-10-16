@@ -3,24 +3,24 @@
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int count = 0, value, num, digit;
-	char *ptr;
+	int len = 0, i, l = 5;
 
 	va_start(list, format);
 
-	if (format == NULL)
+	if (format == NULL || format[0] == '%' && format[1] == '\0')
 		return (-1);
 
-	ptr = format;
-	while (*ptr)
+	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (*ptr != '%' || *ptr = '%' && !handle_func(ptr))
-			count += write(1, format, 1);
-		else
-			count += p_funcs(ptr, list);
+		if (format[i] == '%')
+		{
+			len += handel_func(format[i + 1], list);
+			i++;
+                }
+		len += _putchar(format[i]);
 
 	}
 
 	va_end(list);
-	return(count);
+	return(len);
 }
