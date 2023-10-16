@@ -9,7 +9,7 @@
 typedef struct git_specifier
 {
 	char *specifier;
-	int (*func)(va_list, ...);
+	int (*func)(va_list);
 }specifi;
 
 int p_funcs(char *s, va_list ap, ...);

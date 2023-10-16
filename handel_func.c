@@ -1,8 +1,8 @@
 #include "main.h"
 
-int (*handel_func(char *s))(va_list list, ...)
+int handel_func(char specifier, va_list list)
 {
-	int i;
+	int i, len;
 
 	specifi specifi[] = {
 		{"c", p_char},
@@ -13,21 +13,13 @@ int (*handel_func(char *s))(va_list list, ...)
 		{"u", p_unsigned}};
 	for (i = 0; specifi[i].specifi; i++)
 	{
-		if (*s == specifi[i].specifi[0])
-		return (specifi[i].func);
+		if (specifier == specifi[i].specifi[0])
+			len = specifi[i].func(args);
 	}
-	return(NULL);
-}
-
-int p_funcs(char *s, va_list ap, ...)
-{
-	int (*f)(va_list, ...) = handel_func(s);
-	if (f) 
+	if (len == 0)
 	{
-		return f(ap, ...);
+		len  = _len + _putchar("%");
+		len  = _len + _putchar(specifier);
 	}
-	else
-	{
-	return (0);
-	}
+	return(len);
 }
