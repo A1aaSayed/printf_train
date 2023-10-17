@@ -18,8 +18,8 @@ int handel_func(char specifier, va_list list)
 	}
 	if (len == 0)
 	{
-		len  = _len + _putchar("%");
-		len  = _len + _putchar(specifier);
+		len  += _putchar("%");
+		len  +=  _putchar(specifier);
 	}
 	return(len);
 }
